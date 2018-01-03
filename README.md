@@ -26,3 +26,9 @@ i3 rules
 --------
 
 for_window [class = "URxvt" instance = "UrxvtFloat$"] floating enable
+
+screenshot
+==========
+
+![ScreenShot](launcher.png)
+
