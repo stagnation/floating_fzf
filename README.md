@@ -39,6 +39,11 @@ i3 rules
 
 for_window [class = "URxvt" instance = "UrxvtFloat$"] floating enable
 
+i3 binding
+----------
+
+bindsym $mod+space exec fzf_launcher
+
 screenshot
 ----------
 
@@ -55,6 +60,11 @@ input and populates fzf with entries from any command. The output from fzf is
 saved to a file and later output from the selector after the terminal with fzf
 exits.
 
+i3 binding
+----------
+
+bindsym $mod+Tab exec ~/bin/gits/quickswitch-for-i3/quickswitch.py --dmenu fzf_selector
+
 usage combined with quickswitch
 -------------------------------
 quickswitch: https://github.com/OliverUv/quickswitch-for-i3/
@@ -67,3 +77,13 @@ screenshot
 ----------
 
 ![Screenshot](./selector.png)
+
+Troubleshooting
+===============
+
+During development of these scripts I had trouble getting them to run properly
+when launched from i3. That is because i3 and my shells have different $PATH
+values. The spawned URxvt terminal would then only flicker and no select
+properly from the input. To solve this make sure that the shells spawned by i3
+can find all the necessary scripts. This is why I had to use absolute paths in
+the scripts previously.
