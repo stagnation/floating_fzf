@@ -1,17 +1,25 @@
 #!/usr/bin/env sh
 
-source=`cat` # collect standard input
+# set your FLOAT_TERM env var to adjust how the new term is spawned
+term=${FLOAT_TERM:-"urxvt -name UrxvtFloat"}
+
 sink=$(mktemp)
+store=$(mktemp)
 
 # send settings as command arguments or use default
 settings=${@:-"--border --margin 3% --prompt 'select : '"}
 fzf="fzf $settings"
 
-sourcecommand="printf %s \""$(printf %s "$source")"\""
+# collect standard input
+cat > $store
 
-urxvt -name UrxvtFloat \
-    -e sh -c           \
-    "$sourcecommand | $fzf > $sink"
+$(
+    $term    \
+    -e sh -c \
+    "cat $store | $fzf > $sink"
+)
 
 cat "$sink"
+
 rm "$sink"
+rm "$store"
