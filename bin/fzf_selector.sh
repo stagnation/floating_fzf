@@ -10,10 +10,12 @@ store=$(mktemp)
 settings=${@:-"--border --margin 3% --prompt 'select : '"}
 fzf="fzf $settings"
 
+# collect standard input
 cat > $store
 
-$($term \
-    -e sh -c           \
+$(
+    $term    \
+    -e sh -c \
     "cat $store | $fzf > $sink"
 )
 
