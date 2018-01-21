@@ -21,12 +21,16 @@ Any script can be used to populate the floating fzf selector and the
 selection can be put to use with any script. See the included fzf_launcher for
 an example.
 
-the structure of an invocation is
+The structure of an invocation is
 `$source | fzf_selector [fzf settings] | $sink`
 
-source needs to generate newline-separated entries on std-out and $sink needs to
+$source needs to generate newline-separated entries on std-out and $sink needs to
 consume the output via a pipe. xargs can be used if the desired sink program
 takes input on the command line.
+
+Refer to fzf's manual for available settings and flags. And note that due to
+shell escaping and quoting inside the scripts, multi-word values need to be
+escaped as ` fzf_selector --prompt \'one two :\'
 
 i3 binding
 ----------

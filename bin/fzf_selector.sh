@@ -13,5 +13,5 @@ urxvt -name UrxvtFloat \
     -e sh -c           \
     "$sourcecommand | $fzf > $sink"
 
-cat $sink
-rm $sink
+cat "$sink"
+rm "$sink"
