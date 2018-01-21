@@ -1,8 +1,11 @@
 #!/usr/bin/env sh
 
 source=`cat` # collect standard input
-fzf="fzf --border --margin 3% --prompt 'switch to : '"
 sink=$(mktemp)
+
+# send settings as command arguments or use default
+settings=${@:-"--border --margin 3% --prompt 'select : '"}
+fzf="fzf $settings"
 
 sourcecommand="printf %s \""$(printf %s "$source")"\""
 
