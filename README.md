@@ -75,8 +75,12 @@ floating terminal.
 
 i3 rules
 --------
-
+`
 for_window [class = "URxvt" instance = "UrxvtFloat$"] floating enable
+`
+
+Some terminals might require different rules, use xprop to find the required window
+information about the terminal.
 
 i3 binding
 ----------
@@ -96,5 +100,27 @@ During development of these scripts I had trouble getting them to run properly
 when launched from i3. That is because i3 and my shells have different $PATH
 values. The spawned URxvt terminal would then only flicker and no select
 properly from the input. To solve this make sure that the shells spawned by i3
-can find all the necessary scripts. This is why I had to use absolute paths in
-the scripts previously.
+can find all the necessary scripts. This includes fzf, if fzf is installed in a
+non-standard location.
+
+I have the following symlinks:
+```
+lrwxrwxrwx  ~/bin/fzf -> ~/.fzf/bin/fzf
+lrwxrwxrwx  ~/bin/fzf_launcher.sh -> ~/repos/floating_fzf/bin/fzf_launcher.sh
+lrwxrwxrwx  ~/bin/fzf_selector.sh -> ~/repos/floating_fzf/bin/fzf_selector.sh
+lrwxrwxrwx  ~/bin/listbins.sh -> ~/repos/floating_fzf/bin/listbins.sh
+lrwxrwxrwx  ~/bin/start_independent_process.py -> ~/repos/floating_fzf/bin/start_independent_process.py
+```
+
+with i3 config:
+```
+bindsym $mod+space exec fzf_launcher.sh
+set $quickswitch ~/bin/gits/quickswitch-for-i3/quickswitch.py --dmenu fzf_selector.sh
+bindsym $mod+Tab exec $quickswitch
+```
+
+Contribution
+============
+
+Pull requests are welcome, as well as information and issues found when used in
+different setups.
