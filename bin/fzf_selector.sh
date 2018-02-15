@@ -15,7 +15,7 @@ cleanup()
 }
 trap cleanup 1 2 3 6
 # 1 SIGHUP  Clean tidyup
-# 2 SIGINt  Interrupt
+# 2 SIGINT  Interrupt
 # 3 SIGQUIT Quit
 # 6 SIGABRT Abort
 
@@ -33,6 +33,4 @@ $(
 )
 
 cat "$sink"
-
-rm "$sink"
-rm "$store"
+cleanup
