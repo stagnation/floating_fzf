@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # set your FLOAT_TERM env var to adjust how the new term is spawned
-term=${FLOAT_TERM:-"urxvt -name UrxvtFloat"}
+term=${FLOAT_TERM:-"urxvt -name FloatingTerminal"}
 
 sink=$(mktemp)
 store=$(mktemp)

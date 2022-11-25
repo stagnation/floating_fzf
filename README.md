@@ -76,7 +76,7 @@ floating terminal.
 i3 rules
 --------
 `
-for_window [class = "URxvt" instance = "UrxvtFloat$"] floating enable
+for_window [class = "URxvt" instance = "FloatingTerminal$"] floating enable
 `
 
 Some terminals might require different rules, use xprop to find the required window
