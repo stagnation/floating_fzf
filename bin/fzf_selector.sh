@@ -20,7 +20,7 @@ trap cleanup 1 2 3 6
 # 6 SIGABRT Abort
 
 # send settings as command arguments or use default
-settings=${@:-"--border --margin 3% --prompt 'select : '"}
+settings=${@:-"--color=light --header 'select '"}
 fzf="fzf $settings"
 
 # collect standard input
